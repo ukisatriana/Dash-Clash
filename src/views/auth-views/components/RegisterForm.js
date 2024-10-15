@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Alert } from "antd";
-import FirebaseConfig from 'configs/FirebaseConfig';
-// import firebase from '../../../../src/configs/FirebaseConfig';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const rules = {
 	email: [
@@ -57,16 +56,35 @@ handleRegisterSubmit = () => {
 	const {email, password} = this.state;
 	console.log('data kirim', email, password)
 
-		FirebaseConfig.auth().createUserWithEmailAndPassword(email, password)
-			.then((userCredential) => {
-				console.log('userCredential', userCredential)
-			// Signed in 
-			var user = userCredential.user;
+		// FirebaseConfig.auth().createUserWithEmailAndPassword(email, password)
+		// 	.then((userCredential) => {
+		// 		console.log('userCredential', userCredential)
+		// 	// Signed in 
+		// 	var user = userCredential.user;
+		// 	// ...
+		// })
+		// 	.catch((error) => {
+		// 	var errorCode = error.code;
+		// 	var errorMessage = error.message;
+		// 	console.log('errorMes', errorMessage)
+		// 	console.log('errorCode', errorCode)
+		// 	// ..
+		// });
+
+		const auth = getAuth();
+		createUserWithEmailAndPassword(auth, email, password)
+		.then((userCredential) => {
+			// Signed up 
+			const user = userCredential.user;
+
+			console.log('user', user)
+			console.log('userCredential', userCredential)
 			// ...
 		})
-			.catch((error) => {
-			var errorCode = error.code;
-			var errorMessage = error.message;
+		.catch((error) => {
+			const errorCode = error.code;
+			const errorMessage = error.message;
+
 			console.log('errorMes', errorMessage)
 			console.log('errorCode', errorCode)
 			// ..
