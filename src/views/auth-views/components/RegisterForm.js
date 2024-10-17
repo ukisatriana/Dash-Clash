@@ -90,7 +90,6 @@ handleRegisterSubmit = () => {
 			// ..
 		});
 
-
 }
 
 render() {

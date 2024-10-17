@@ -1,35 +1,37 @@
-import fetch from 'auth/FetchInterceptor'
-
-const AuthService = {}
-
-AuthService.login = function (data) {
-	return fetch({
-		url: '/auth/login',
-		method: 'post',
-		data: data
-	})
-}
-
-AuthService.register = function (data) {
-	return fetch({
-		url: '/auth/register',
-		method: 'post',
-		data: data
-	})
-}
-
-AuthService.logout = function () {
-	return fetch({
-		url: '/auth/logout',
-		method: 'post'
-	})
-}
-
-AuthService.loginInOAuth = function () {
-	return fetch({
-		url: '/auth/loginInOAuth',
-		method: 'post'
-	})
-}
-
-export default AuthService;
+import { 
+	auth,
+	signInWithEmailAndPassword,
+	signOut,
+	createUserWithEmailAndPassword,
+	signInWithPopup
+  } from 'auth/FirebaseAuth';
+  
+  const AuthService = {}
+  
+  AuthService.login = function (data) {
+	const { email, password } = data;
+	return signInWithEmailAndPassword(auth, email, password)
+	  .then(userCredential => userCredential.user)
+	  .catch(error => { throw error });
+  }
+  
+  AuthService.register = function (data) {
+	const { email, password } = data;
+	return createUserWithEmailAndPassword(auth, email, password)
+	  .then(userCredential => userCredential.user)
+	  .catch(error => { throw error });
+  }
+  
+  AuthService.logout = function () {
+	return signOut(auth)
+	  .then(() => true)
+	  .catch(error => { throw error });
+  }
+  
+  AuthService.loginInOAuth = function (provider) {
+	return signInWithPopup(auth, provider)
+	  .then(userCredential => userCredential.user)
+	  .catch(error => { throw error });
+  }
+  
+  export default AuthService;
