@@ -27,6 +27,7 @@ import {
 } from '@ant-design/icons';
 import utils from 'utils';
 import { useSelector } from 'react-redux';
+import ProjectList from "views/app-views/project/project-list";
 
 const MembersChart = props => (
   <ApexChart {...props}/>
@@ -201,7 +202,7 @@ export const DefaultDashboard = () => {
         </Col>
       </Row>
       <Row gutter={16}>
-        <Col xs={24} sm={24} md={24} lg={7}>
+        {/* <Col xs={24} sm={24} md={24} lg={7}>
           <Card title="New Join Member" extra={<CardDropdown items={newJoinMemberOptions} />}>
             <div className="mt-3">
               {
@@ -227,7 +228,14 @@ export const DefaultDashboard = () => {
               pagination={false}
             />
           </Card>
+        </Col> */}
+
+        <Col xs={24} sm={24} md={24} lg={24}>
+          <Card title="Summary Table Project" extra={<CardDropdown items={latestTransactionOption} />}>
+            <ProjectList />
+          </Card>
         </Col>
+
       </Row>
     </>
   )

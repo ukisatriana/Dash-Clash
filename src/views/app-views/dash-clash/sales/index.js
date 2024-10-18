@@ -30,7 +30,6 @@ import dayjs from 'dayjs';
 import { DATE_FORMAT_DD_MM_YYYY } from 'constants/DateConstant'
 import utils from 'utils'
 import { useSelector } from 'react-redux'
-import ProductList from "./clash-list";
 
 const { Option } = Select;
 
@@ -348,11 +347,7 @@ const SalesDashboard = () => {
 				</Col>
 			</Row> */}
 
-			<Row gutter={16}>
-				<Col xs={24} sm={24} md={24} lg={24}>
-					<ProductList />
-				</Col>
-			</Row>
+		
 		</>
 	)
 }

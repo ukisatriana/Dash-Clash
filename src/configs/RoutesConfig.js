@@ -20,11 +20,11 @@ export const publicRoutes = [
 ]
 
 export const protectedRoutes = [
-    {
-        key: 'dashboard.default',
-        path: `${APP_PREFIX_PATH}/dashboards/default`,
-        component: React.lazy(() => import('views/app-views/dashboards/default')),
-    },
+    // {
+    //     key: 'dashboard.default',
+    //     path: `${APP_PREFIX_PATH}/dashboards/default`,
+    //     component: React.lazy(() => import('views/app-views/dashboards/default')),
+    // },
     {
         key: 'dashboard.clash.main',
         path: `${APP_PREFIX_PATH}/dash-clash/default`,  
@@ -34,5 +34,11 @@ export const protectedRoutes = [
         key: 'dashboard.clash.detail',
         path: `${APP_PREFIX_PATH}/dash-clash/sales`,  
         component: React.lazy(() => import('views/app-views/dash-clash/sales')),
-    }
+    },
+    {
+        key: 'dashboard.project',
+        path: `${APP_PREFIX_PATH}/project/project-list`,  
+        component: React.lazy(() => import('views/app-views/project/project-list')),
+    },
+    
 ]

@@ -1,0 +1,38 @@
+[
+	{
+        "id": 1,
+        "projectName": "RS Pon Jakarta",
+        "unitKerja": "BOVRS",
+        "clashHard": "0",
+        "clashsoft": "0",
+        "clashSite": "0",
+        "Dampak": "Tidak ada data"
+    },
+    {
+        "id": 2,
+        "projectName": "Dreging Tursina",
+        "unitKerja": "INFRA 2",
+        "clashHard": "0",
+        "clashsoft": "0",
+        "clashSite": "0",
+        "Dampak": "Tidak ada data"
+    },
+    {
+        "id": 3,
+        "projectName": "Cibubur Youth Elite Sport Center",
+        "unitKerja": "BOVRS",
+        "clashHard": "0",
+        "clashsoft": "0",
+        "clashSite": "0",
+        "Dampak": "Tidak ada data"
+    },
+    {
+        "id": 4,
+        "projectName": "Universitas Jambi",
+        "unitKerja": "BOVRS",
+        "clashHard": "0",
+        "clashsoft": "0",
+        "clashSite": "0",
+        "Dampak": "Omzet kontrak"
+    }
+]
