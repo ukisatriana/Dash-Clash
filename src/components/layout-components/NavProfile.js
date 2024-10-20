@@ -80,7 +80,7 @@ export const NavProfile = ({mode}) => {
 				<Profile>
 					{/* <Avatar src="/img/avatars/thumb-1.jpg" /> */}
 					<UserInfo className="profile-text">
-						<Name>Dadang Dudung</Name>
+						<Name>Dadang Dangdut</Name>
 						<Title>BIM Engineer</Title>
 					</UserInfo>
 				</Profile>

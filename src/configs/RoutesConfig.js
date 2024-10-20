@@ -35,10 +35,35 @@ export const protectedRoutes = [
         path: `${APP_PREFIX_PATH}/dash-clash/sales`,  
         component: React.lazy(() => import('views/app-views/dash-clash/sales')),
     },
+
+    //add project
     {
         key: 'dashboard.project',
         path: `${APP_PREFIX_PATH}/project/project-list`,  
         component: React.lazy(() => import('views/app-views/project/project-list')),
     },
+    {
+        key: 'dashboard.project.add',
+        path: `${APP_PREFIX_PATH}/project/add-project`,  
+        component: React.lazy(() => import('views/app-views/project/add-project')),
+    },
+
+    // option input
+    {
+        key: 'dashboard.option.jenis-clash',
+        path: `${APP_PREFIX_PATH}/input-option/jenis-clash/jenis-clash-list`,  
+        component: React.lazy(() => import('views/app-views/input-option/jenis-clash/jenis-clash-list')),
+    },
+    {
+        key: 'dashboard.option.jenis-clash.add',
+        path: `${APP_PREFIX_PATH}/input-option/jenis-clash/jenis-clash-add`,  
+        component: React.lazy(() => import('views/app-views/input-option/jenis-clash/jenis-clash-add')),
+    },
+    {
+        key: 'dashboard.option.jenis-clash.edit',
+        path: `${APP_PREFIX_PATH}/input-option/jenis-clash/jenis-clash-edit/:id`,  
+        component: React.lazy(() => import('views/app-views/input-option/jenis-clash/jenis-clash-edit')),
+    },
+
     
 ]

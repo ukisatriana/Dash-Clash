@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Card, Table, Input, Button, Menu, Select } from 'antd';
+import { Card, Table, Input, Button, Menu } from 'antd';
 import projectData from "assets/data/project-data.json";
 import { EditOutlined, DeleteOutlined, SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import EllipsisDropdown from 'components/shared-components/EllipsisDropdown';
@@ -7,7 +7,7 @@ import Flex from 'components/shared-components/Flex';
 import { useNavigate } from "react-router-dom";
 import utils from 'utils'
 
-const { Option } = Select
+
 
 // const getStockStatus = stockCount => {
 // 	if(stockCount >= 10) {
@@ -21,10 +21,8 @@ const { Option } = Select
 // 	}
 // 	return null
 // }
-//import select dihapus
-const categories = ['Cloths', 'Bags', 'Shoes', 'Watches', 'Devices']
 
-const ProjectList = () => {
+const JenisClashList = () => {
 	const navigate = useNavigate();
 	const [list, setList] = useState(projectData)
 	const [selectedRows, setSelectedRows] = useState([])
@@ -48,12 +46,14 @@ const ProjectList = () => {
 	);
 	
 	const addProject = () => {
-		navigate(`/app/project/add-project`)
+		navigate(`/app/input-option/jenis-clash/jenis-clash-add`)
 	}
 	
 	const viewDetails = row => {
-		navigate(`/app/apps/dproject/edit-project/${row.id}`)
+		navigate(`/app/input-option/jenis-clash/jenis-clash-edit/${row.id}`)
 	}
+
+	
 	
 	const deleteRow = row => {
 		const objKey = 'id'
@@ -76,38 +76,15 @@ const ProjectList = () => {
 			dataIndex: 'id'
 		},
 		{
-			title: 'Project Name',
-			dataIndex: 'projectName',
+			title: 'Jenis Clash',
+			dataIndex: 'jenisClash',
 			
 			sorter: (a, b) => utils.antdTableSorter(a, b, 'projectName')
 		},
 		{
-			title: 'Project Location',
-			dataIndex: 'projectLocation',
+			title: 'Ket Jenis Clash',
+			dataIndex: 'ketJenisClash',
 			sorter: (a, b) => utils.antdTableSorter(a, b, 'projectLocation')
-		},
-		{
-			title: 'Project Type',
-			dataIndex: 'projectType',
-			
-			sorter: (a, b) => utils.antdTableSorter(a, b, 'projectType')
-		},
-		{
-			title: 'Owner',
-			dataIndex: 'owner',
-			sorter: (a, b) => utils.antdTableSorter(a, b, 'owner')
-		},
-		{
-			title: 'Contractor',
-			dataIndex: 'contractor',
-			
-			sorter: (a, b) => utils.antdTableSorter(a, b, 'contractor')
-		},
-		{
-			title: 'Subcontractor',
-			dataIndex: 'subcontractor',
-			
-			sorter: (a, b) => utils.antdTableSorter(a, b, 'subcontractor')
 		},
 		{
 			title: '',
@@ -135,39 +112,12 @@ const ProjectList = () => {
 		setSelectedRowKeys([])
 	}
 
-    const handleShowCategory = value => {
-		if(value !== 'All') {
-			const key = 'category'
-			const data = utils.filterArray(projectData, key, value)
-			setList(data)
-		} else {
-			setList(projectData)
-		}
-	}
-
-
 	return (
 		<Card>
 			<Flex alignItems="center" justifyContent="space-between" mobileFlex={false}>
 				<Flex className="mb-1" mobileFlex={false}>
 					<div className="mr-md-3 mb-3">
 						<Input placeholder="Search" prefix={<SearchOutlined />} onChange={e => onSearch(e)}/>
-					</div>
-					<div className="mb-3">
-						<Select 
-							defaultValue="All" 
-							className="w-100" 
-							style={{ minWidth: 180 }} 
-							onChange={handleShowCategory} 
-							placeholder="Category"
-						>
-							<Option value="All">Nama Proyek</Option>
-							{
-								categories.map(elm => (
-									<Option key={elm} value={elm}>{elm}</Option>
-								))
-							}
-						</Select>
 					</div>
 				</Flex>
 				<div>
@@ -191,4 +141,4 @@ const ProjectList = () => {
 	)
 }
 
-export default ProjectList
+export default JenisClashList

@@ -1,4 +1,4 @@
-import { DashboardOutlined, RadarChartOutlined, RadiusSettingOutlined } from '@ant-design/icons';
+import { DashboardOutlined, RadarChartOutlined, RadiusSettingOutlined, FileTextOutlined } from '@ant-design/icons';
 import { APP_PREFIX_PATH } from 'configs/AppConfig'
 
 
@@ -49,9 +49,55 @@ const mainDataNavTree = [{
   ]
 }]
 
+
+const inputOptionNavTree = [{
+  key: 'Input Option',
+  path: `${APP_PREFIX_PATH}/input-option`,
+  title: 'sidenav.input.option',
+  icon: DashboardOutlined,
+  breadcrumb: false,
+  isGroupTitle: true,
+  submenu: [
+    {
+      key: 'option-jenis-clash',
+      path: `${APP_PREFIX_PATH}/input-option/jenis-clash/jenis-clash-list`,
+      title: 'sidenav.input.jenis.clash',
+      icon: FileTextOutlined,
+      breadcrumb: true,
+      submenu: []
+    },
+    {
+      key: 'option-kategori-clash',
+      path: `${APP_PREFIX_PATH}/input-option/kategori-clash-list`,
+      title: 'sidenav.input.kategori.clash',
+      icon: FileTextOutlined,
+      breadcrumb: false,
+      submenu: []
+    },
+    {
+      key: 'option-tindak-lanjut',
+      path: `${APP_PREFIX_PATH}/input-option/tindak-lanjut-list`,
+      title: 'sidenav.input.tindak.lanjut',
+      icon: FileTextOutlined,
+      breadcrumb: false,
+      submenu: []
+    },
+    {
+      key: 'option-status-validasi',
+      path: `${APP_PREFIX_PATH}/input-option/status-validasi-list`,
+      title: 'sidenav.input.status.validasi',
+      icon: FileTextOutlined,
+      breadcrumb: false,
+      submenu: []
+    },
+
+  ]
+}]
+
 const navigationConfig = [
   ...dashBoardNavTree,
-  ...mainDataNavTree
+  ...mainDataNavTree,
+  ...inputOptionNavTree
 ]
 
 export default navigationConfig;
