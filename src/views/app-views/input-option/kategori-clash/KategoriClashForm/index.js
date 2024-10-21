@@ -3,7 +3,7 @@ import PageHeaderAlt from 'components/layout-components/PageHeaderAlt'
 import { Tabs, Form, Button, message } from 'antd';
 import Flex from 'components/shared-components/Flex';
 import projectData from "assets/data/project-data.json";
-import ProjectField from './ProjectField';
+import KategoriClashField from './KategoriClashField';
 
 // const getBase64 = (img, callback) => {
 //   const reader = new FileReader();
@@ -14,7 +14,7 @@ import ProjectField from './ProjectField';
 const ADD = 'ADD'
 const EDIT = 'EDIT'
 
-const ProductForm = props => {
+const KategoriClashForm = props => {
 
 	const { mode = ADD, param } = props
 
@@ -67,6 +67,11 @@ const ProductForm = props => {
 		form.resetFields();
 	  };
 
+	// const onSubmit () {
+	// 	console.log('submit')
+
+	// }
+
 	const onFinish = () => {
 		setSubmitLoading(true)
 		form.validateFields().then(values => {
@@ -102,7 +107,7 @@ const ProductForm = props => {
 				<PageHeaderAlt className="border-bottom" overlap>
 					<div className="container">
 						<Flex className="py-2" mobileFlex={false} justifyContent="space-between" alignItems="center">
-							<h2 className="mb-3">{mode === 'ADD'? 'Add New Project' : `Edit Product`} </h2>
+							<h2 className="mb-3">{mode === 'ADD'? 'Add New Jenis Clash' : `Edit Jenis Clash`} </h2>
 							<div className="mb-3">
 								<Button className="mr-2" onClick={onReset}>Discard</Button>
 								<Button type="primary" onClick={() => onFinish()} htmlType="submit" loading={submitLoading} >
@@ -117,32 +122,11 @@ const ProductForm = props => {
 						defaultActiveKey="1" 
 						style={{marginTop: 30}}
 						items={[
-							
 							{
 								label: 'Project Field',
 								key: '1',
-								children: <ProjectField />,
+								children: <KategoriClashField />,
 							}
-							// {
-							// 	label: 'Variation',
-							// 	key: '2',
-							// 	children: <VariationField />,
-							// },
-							// {
-							// 	label: 'Shipping',
-							// 	key: '3',
-							// 	children: <ShippingField />,
-							// },
-							
-							// {
-							// 	label: 'General',
-							// 	key: '4',
-							// 	children: <GeneralField 
-							// 		uploadedImg={uploadedImg} 
-							// 		uploadLoading={uploadLoading} 
-							// 		handleUploadChange={handleUploadChange}
-							// 	/>,
-							// },
 						]}
 					/>
 				</div>
@@ -151,4 +135,4 @@ const ProductForm = props => {
 	)
 }
 
-export default ProductForm
+export default KategoriClashForm

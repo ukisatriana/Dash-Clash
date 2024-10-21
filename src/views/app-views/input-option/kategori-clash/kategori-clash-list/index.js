@@ -22,7 +22,7 @@ import utils from 'utils'
 // 	return null
 // }
 
-const JenisClashList = () => {
+const KategoriClashList = () => {
 	const navigate = useNavigate();
 	const [list, setList] = useState(projectData)
 	const [selectedRows, setSelectedRows] = useState([])
@@ -46,11 +46,11 @@ const JenisClashList = () => {
 	);
 	
 	const addProject = () => {
-		navigate(`/app/input-option/jenis-clash/jenis-clash-add`)
+		navigate(`/app/input-option/kategori-clash/kategori-clash-add`)
 	}
 	
 	const viewDetails = row => {
-		navigate(`/app/input-option/jenis-clash/jenis-clash-edit/${row.id}`)
+		navigate(`/app/input-option/kategori-clash/kategori-clash-edit/${row.id}`)
 	}
 
 	
@@ -76,15 +76,15 @@ const JenisClashList = () => {
 			dataIndex: 'id'
 		},
 		{
-			title: 'Jenis Clash',
-			dataIndex: 'jenisClash',
+			title: 'Nama Kategori Clash',
+			dataIndex: 'kategoriClash',
 			
-			sorter: (a, b) => utils.antdTableSorter(a, b, 'projectName')
+			sorter: (a, b) => utils.antdTableSorter(a, b, 'kategoriClash')
 		},
 		{
-			title: 'Ket Jenis Clash',
-			dataIndex: 'ketJenisClash',
-			sorter: (a, b) => utils.antdTableSorter(a, b, 'projectLocation')
+			title: 'Ket Kategori Clash',
+			dataIndex: 'ketKategoriClash',
+			sorter: (a, b) => utils.antdTableSorter(a, b, 'ketKategoriClash')
 		},
 		{
 			title: '',
@@ -121,7 +121,7 @@ const JenisClashList = () => {
 					</div>
 				</Flex>
 				<div>
-					<Button onClick={addProject} type="primary" icon={<PlusCircleOutlined />} block>Add Jenis Clash</Button>
+					<Button onClick={addProject} type="primary" icon={<PlusCircleOutlined />} block>Add Kategori Clash</Button>
 				</div>
 			</Flex>
 			<div className="table-responsive">
@@ -141,4 +141,4 @@ const JenisClashList = () => {
 	)
 }
 
-export default JenisClashList
+export default KategoriClashList

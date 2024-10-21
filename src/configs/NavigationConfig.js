@@ -68,10 +68,10 @@ const inputOptionNavTree = [{
     },
     {
       key: 'option-kategori-clash',
-      path: `${APP_PREFIX_PATH}/input-option/kategori-clash-list`,
+      path: `${APP_PREFIX_PATH}/input-option/kategori-clash/kategori-clash-list`,
       title: 'sidenav.input.kategori.clash',
       icon: FileTextOutlined,
-      breadcrumb: false,
+      breadcrumb: true,
       submenu: []
     },
     {

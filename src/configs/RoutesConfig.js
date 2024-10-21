@@ -47,8 +47,14 @@ export const protectedRoutes = [
         path: `${APP_PREFIX_PATH}/project/add-project`,  
         component: React.lazy(() => import('views/app-views/project/add-project')),
     },
+    {
+        key: 'dashboard.project.edit',
+        path: `${APP_PREFIX_PATH}/project/project-edit/:id`,  
+        component: React.lazy(() => import('views/app-views/project/project-edit')),
+    },
 
     // option input
+    //jenis clash
     {
         key: 'dashboard.option.jenis-clash',
         path: `${APP_PREFIX_PATH}/input-option/jenis-clash/jenis-clash-list`,  
@@ -64,6 +70,19 @@ export const protectedRoutes = [
         path: `${APP_PREFIX_PATH}/input-option/jenis-clash/jenis-clash-edit/:id`,  
         component: React.lazy(() => import('views/app-views/input-option/jenis-clash/jenis-clash-edit')),
     },
+
+    //kategori clash
+    {
+        key: 'dashboard.option.kategori-clash',
+        path: `${APP_PREFIX_PATH}/input-option/kategori-clash/kategori-clash-list`,
+        component: React.lazy(() => import('views/app-views/input-option/kategori-clash/kategori-clash-list')),
+    },
+    {
+        key: 'dashboard.option.kategori-clash.add',
+        path: `${APP_PREFIX_PATH}/input-option/kategori-clash/kategori-clash-add`,
+        component: React.lazy(() => import('views/app-views/input-option/kategori-clash/kategori-clash-add')),
+    },
+
 
     
 ]

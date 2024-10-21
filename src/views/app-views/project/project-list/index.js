@@ -52,7 +52,7 @@ const ProjectList = () => {
 	}
 	
 	const viewDetails = row => {
-		navigate(`/app/apps/dproject/edit-project/${row.id}`)
+		navigate(`/app/project/project-edit/${row.id}`)
 	}
 	
 	const deleteRow = row => {
