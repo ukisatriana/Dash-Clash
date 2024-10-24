@@ -53,6 +53,27 @@ export const protectedRoutes = [
         component: React.lazy(() => import('views/app-views/project/project-edit')),
     },
 
+
+    //data clash
+    {
+        key: 'data.clash',
+        path: `${APP_PREFIX_PATH}/data-clash/data-clash-list`,
+        component: React.lazy(() => import('views/app-views/data-clash/data-clash-list')),
+    },
+    {
+        key: 'data.clash.add',
+        path: `${APP_PREFIX_PATH}/data-clash/data-clash-add`,
+        component: React.lazy(() => import('views/app-views/data-clash/data-clash-add')),
+    },
+    {
+        key: 'data.clash.edit',
+        path: `${APP_PREFIX_PATH}/data-clash/data-clash-edit/:id`,
+        component: React.lazy(() => import('views/app-views/data-clash/data-clash-edit')),
+    },
+
+
+
+
     // option input
     //jenis clash
     {
@@ -81,6 +102,28 @@ export const protectedRoutes = [
         key: 'dashboard.option.kategori-clash.add',
         path: `${APP_PREFIX_PATH}/input-option/kategori-clash/kategori-clash-add`,
         component: React.lazy(() => import('views/app-views/input-option/kategori-clash/kategori-clash-add')),
+    },
+    {
+        key: 'dashboard.option.kategori-clash.edit',
+        path: `${APP_PREFIX_PATH}/input-option/kategori-clash/kategori-clash-edit/:id`,
+        component: React.lazy(() => import('views/app-views/input-option/kategori-clash/kategori-clash-edit')),
+    },
+
+    //status validasi
+    {
+        key: 'dashboard.option.status-validasi',
+        path: `${APP_PREFIX_PATH}/input-option/status-validasi/status-validasi-list`,
+        component: React.lazy(() => import('views/app-views/input-option/status-validasi/status-validasi-list')),
+    },
+    {
+        key: 'dashboard.option.status-validasi.add',
+        path: `${APP_PREFIX_PATH}/input-option/status-validasi/status-validasi-add`,
+        component: React.lazy(() => import('views/app-views/input-option/status-validasi/status-validasi-add')),
+    },
+    {
+        key: 'dashboard.option.status-validasi.edit',
+        path: `${APP_PREFIX_PATH}/input-option/status-validasi/status-validasi-edit/:id`,
+        component: React.lazy(() => import('views/app-views/input-option/status-validasi/status-validasi-edit')),
     },
 
 

@@ -1,4 +1,10 @@
-import { DashboardOutlined, RadarChartOutlined, RadiusSettingOutlined, FileTextOutlined } from '@ant-design/icons';
+import { 
+  DashboardOutlined, 
+  RadarChartOutlined, 
+  RadiusSettingOutlined, 
+  FileTextOutlined, 
+  BuildOutlined 
+} from '@ant-design/icons';
 import { APP_PREFIX_PATH } from 'configs/AppConfig'
 
 
@@ -45,6 +51,14 @@ const mainDataNavTree = [{
       breadcrumb: false,
       submenu: []
     },
+    {
+      key: 'data-clash',
+      path: `${APP_PREFIX_PATH}/data-clash/data-clash-list`,
+      title: 'sidenav.data.clash',
+      icon: BuildOutlined,
+      breadcrumb: false,
+      submenu: []
+    },
 
   ]
 }]
@@ -75,17 +89,17 @@ const inputOptionNavTree = [{
       submenu: []
     },
     {
-      key: 'option-tindak-lanjut',
-      path: `${APP_PREFIX_PATH}/input-option/tindak-lanjut-list`,
-      title: 'sidenav.input.tindak.lanjut',
+      key: 'option-status-validasi',
+      path: `${APP_PREFIX_PATH}/input-option/status-validasi/status-validasi-list`,
+      title: 'sidenav.input.status.validasi',
       icon: FileTextOutlined,
-      breadcrumb: false,
+      breadcrumb: true,
       submenu: []
     },
     {
-      key: 'option-status-validasi',
-      path: `${APP_PREFIX_PATH}/input-option/status-validasi-list`,
-      title: 'sidenav.input.status.validasi',
+      key: 'option-tindak-lanjut',
+      path: `${APP_PREFIX_PATH}/input-option/tindak-lanjut-list`,
+      title: 'sidenav.input.tindak.lanjut',
       icon: FileTextOutlined,
       breadcrumb: false,
       submenu: []

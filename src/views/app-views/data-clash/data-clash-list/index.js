@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Card, Table, Input, Button, Menu } from 'antd';
+import { Card, Table, Input, Button, Menu, Select } from 'antd';
 import projectData from "assets/data/project-data.json";
 import { EditOutlined, DeleteOutlined, SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import EllipsisDropdown from 'components/shared-components/EllipsisDropdown';
@@ -7,7 +7,7 @@ import Flex from 'components/shared-components/Flex';
 import { useNavigate } from "react-router-dom";
 import utils from 'utils'
 
-
+const { Option } = Select
 
 // const getStockStatus = stockCount => {
 // 	if(stockCount >= 10) {
@@ -21,8 +21,10 @@ import utils from 'utils'
 // 	}
 // 	return null
 // }
+//import select dihapus
+const categories = ['Cloths', 'Bags', 'Shoes', 'Watches', 'Devices']
 
-const KategoriClashList = () => {
+const DataClashList = () => {
 	const navigate = useNavigate();
 	const [list, setList] = useState(projectData)
 	const [selectedRows, setSelectedRows] = useState([])
@@ -45,15 +47,13 @@ const KategoriClashList = () => {
 		</Menu>
 	);
 	
-	const addKategoriClash = () => {
-		navigate(`/app/input-option/kategori-clash/kategori-clash-add`)
+	const addDataClash = () => {
+		navigate(`/app/data-clash/data-clash-add`)
 	}
 	
 	const viewDetails = row => {
-		navigate(`/app/input-option/kategori-clash/kategori-clash-edit/${row.id}`)
+		navigate(`/app/data-clash/data-clash-edit/${row.id}`)
 	}
-
-	
 	
 	const deleteRow = row => {
 		const objKey = 'id'
@@ -76,15 +76,44 @@ const KategoriClashList = () => {
 			dataIndex: 'id'
 		},
 		{
-			title: 'Nama Kategori Clash',
-			dataIndex: 'namaKatClash',
+			title: 'Project Name',
+			dataIndex: 'projectName',
 			
-			sorter: (a, b) => utils.antdTableSorter(a, b, 'namaKatClash')
+			sorter: (a, b) => utils.antdTableSorter(a, b, 'projectName')
 		},
 		{
-			title: 'Ket Kategori Clash',
-			dataIndex: 'ketKategoriClash',
-			sorter: (a, b) => utils.antdTableSorter(a, b, 'ketKategoriClash')
+			title: 'Project Location',
+			dataIndex: 'projectLocation',
+			sorter: (a, b) => utils.antdTableSorter(a, b, 'projectLocation')
+		},
+		{
+			title: 'Project Type',
+			dataIndex: 'projectType',
+			
+			sorter: (a, b) => utils.antdTableSorter(a, b, 'projectType')
+		},
+		{
+			title: 'Divisi',
+			dataIndex: 'divisi',
+			sorter: (a, b) => utils.antdTableSorter(a, b, 'divisi')
+		},
+		{
+			title: 'Manager Proyek',
+			dataIndex: 'managerProyek',
+			
+			sorter: (a, b) => utils.antdTableSorter(a, b, 'managerProyek')
+		},
+		{
+			title: 'Kontak MP',
+			dataIndex: 'kontakMp',
+			
+			sorter: (a, b) => utils.antdTableSorter(a, b, 'kontakMp')
+		},
+		{
+			title: 'Pic BIM',
+			dataIndex: 'picBim',
+			
+			sorter: (a, b) => utils.antdTableSorter(a, b, 'picBIM')
 		},
 		{
 			title: '',
@@ -112,6 +141,17 @@ const KategoriClashList = () => {
 		setSelectedRowKeys([])
 	}
 
+    const handleShowCategory = value => {
+		if(value !== 'All') {
+			const key = 'category'
+			const data = utils.filterArray(projectData, key, value)
+			setList(data)
+		} else {
+			setList(projectData)
+		}
+	}
+
+
 	return (
 		<Card>
 			<Flex alignItems="center" justifyContent="space-between" mobileFlex={false}>
@@ -119,9 +159,25 @@ const KategoriClashList = () => {
 					<div className="mr-md-3 mb-3">
 						<Input placeholder="Search" prefix={<SearchOutlined />} onChange={e => onSearch(e)}/>
 					</div>
+					<div className="mb-3">
+						<Select 
+							defaultValue="All" 
+							className="w-100" 
+							style={{ minWidth: 180 }} 
+							onChange={handleShowCategory} 
+							placeholder="Category"
+						>
+							<Option value="All">Nama Proyek</Option>
+							{
+								categories.map(elm => (
+									<Option key={elm} value={elm}>{elm}</Option>
+								))
+							}
+						</Select>
+					</div>
 				</Flex>
 				<div>
-					<Button onClick={addKategoriClash} type="primary" icon={<PlusCircleOutlined />} block>Add Kategori Clash</Button>
+					<Button onClick={addDataClash} type="primary" icon={<PlusCircleOutlined />} block>Add Data Clash</Button>
 				</div>
 			</Flex>
 			<div className="table-responsive">
@@ -141,4 +197,4 @@ const KategoriClashList = () => {
 	)
 }
 
-export default KategoriClashList
+export default DataClashList

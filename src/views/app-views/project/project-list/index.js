@@ -93,21 +93,27 @@ const ProjectList = () => {
 			sorter: (a, b) => utils.antdTableSorter(a, b, 'projectType')
 		},
 		{
-			title: 'Owner',
-			dataIndex: 'owner',
-			sorter: (a, b) => utils.antdTableSorter(a, b, 'owner')
+			title: 'Divisi',
+			dataIndex: 'divisi',
+			sorter: (a, b) => utils.antdTableSorter(a, b, 'divisi')
 		},
 		{
-			title: 'Contractor',
-			dataIndex: 'contractor',
+			title: 'Manager Proyek',
+			dataIndex: 'managerProyek',
 			
-			sorter: (a, b) => utils.antdTableSorter(a, b, 'contractor')
+			sorter: (a, b) => utils.antdTableSorter(a, b, 'managerProyek')
 		},
 		{
-			title: 'Subcontractor',
-			dataIndex: 'subcontractor',
+			title: 'Kontak MP',
+			dataIndex: 'kontakMp',
 			
-			sorter: (a, b) => utils.antdTableSorter(a, b, 'subcontractor')
+			sorter: (a, b) => utils.antdTableSorter(a, b, 'kontakMp')
+		},
+		{
+			title: 'Pic BIM',
+			dataIndex: 'picBim',
+			
+			sorter: (a, b) => utils.antdTableSorter(a, b, 'picBIM')
 		},
 		{
 			title: '',

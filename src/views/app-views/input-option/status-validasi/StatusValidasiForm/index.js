@@ -3,28 +3,30 @@ import PageHeaderAlt from 'components/layout-components/PageHeaderAlt'
 import { Tabs, Form, Button, message } from 'antd';
 import Flex from 'components/shared-components/Flex';
 import projectData from "assets/data/project-data.json";
-import JenisClashField from './JenisClashField';
-import FirestoreService from 'services/FirestoreService';
-import { useNavigate } from 'react-router-dom';
+import StatusValidasiField from './StatusValidasiField';
+
+// const getBase64 = (img, callback) => {
+//   const reader = new FileReader();
+//   reader.addEventListener('load', () => callback(reader.result));
+//   reader.readAsDataURL(img);
+// }
 
 const ADD = 'ADD'
 const EDIT = 'EDIT'
 
-const JenisClashForm = props => {
+const StatusValidasiForm = props => {
 
 	const { mode = ADD, param } = props
-	const navigate = useNavigate();
-
-	const initialValues = {
-		namaJenisClash: '',
-		ketJenisClash: ''
-	  };
 
 	const [form] = Form.useForm();
+	// const [uploadedImg, setImage] = useState('')
+	// const [uploadLoading, setUploadLoading] = useState(false)
 	const [submitLoading, setSubmitLoading] = useState(false)
 
 	useEffect(() => {
-		if(mode === EDIT) {
+    	if(mode === EDIT) {
+			console.log('is edit')
+			console.log('props', props)
 			const { id } = param
 			const produtId = parseInt(id)
 			const productData = projectData.filter( product => product.id === produtId)
@@ -36,13 +38,39 @@ const JenisClashForm = props => {
 				owner: product.owner,
 				contractor: product.contractor,
 				subcontractor: product.subcontractor
+				// comparePrice: 0.00,
+				// cost: 0.00,
+				// taxRate: 6,
+				// description: 'There are many variations of passages of Lorem Ipsum available.',
+				// category: product.category,
+				// name: product.name,
+				// price: product.price
 			});
+			// setImage(product.image)
 		}
-	}, [form, mode, param, props]);
+  	}, [form, mode, param, props]);
+
+	// const handleUploadChange = info => {
+	// 	if (info.file.status === 'uploading') {
+	// 		setUploadLoading(true)
+	// 		return;
+	// 	}
+	// 	if (info.file.status === 'done') {
+	// 		getBase64(info.file.originFileObj, imageUrl =>{
+	// 			setImage(imageUrl)
+	// 			setUploadLoading(true)
+	// 		});
+	// 	}
+	// };
 
 	const onReset = () => {
 		form.resetFields();
 	  };
+
+	// const onSubmit () {
+	// 	console.log('submit')
+
+	// }
 
 	const onFinish = () => {
 		setSubmitLoading(true)
@@ -50,29 +78,18 @@ const JenisClashForm = props => {
 			setTimeout(() => {
 				setSubmitLoading(false)
 				if(mode === ADD) {
-					message.success(`Created ${values.namaJenisClash} to project list`);
-					navigate('/app/input-option/jenis-clash/jenis-clash-list');
+					message.success(`Created ${values.name} to project list`);
 				}
 				if(mode === EDIT) {
 					message.success(`Product saved`);
-					navigate('/app/input-option/jenis-clash/jenis-clash-list');
 				}
 			}, 1500);
 		}).catch(info => {
 			setSubmitLoading(false)
+			console.log('info', info)
+			message.error('Please enter all required field ');
 		});
 	};
-
-	const handleFinish = async (values) => {
-		try {
-		  const docId = await FirestoreService.createDocument('jenisClash', values);
-		  message.success(`Jenis Clash created with ID: ${docId}`);
-		  form.resetFields();
-		  onFinish();
-		} catch (error) {
-		  message.error('Error creating Jenis Clash: ' + error.message);
-		}
-	  };
 
 	return (
 		<>
@@ -81,13 +98,16 @@ const JenisClashForm = props => {
 				form={form}
 				name="advanced_search"
 				className="ant-advanced-search-form"
-				initialValues={initialValues}
-				onFinish={handleFinish}
+				initialValues={{
+					heightUnit: 'cm',
+					widthUnit: 'cm',
+					weightUnit: 'kg'
+				}}
 			>
 				<PageHeaderAlt className="border-bottom" overlap>
 					<div className="container">
 						<Flex className="py-2" mobileFlex={false} justifyContent="space-between" alignItems="center">
-							<h2 className="mb-3">{mode === 'ADD'? 'Add New Jenis Clash' : `Edit Jenis Clash`} </h2>
+							<h2 className="mb-3">{mode === 'ADD'? 'Add New Status Validasi ' : `Edit Status Validasi`} </h2>
 							<div className="mb-3">
 								<Button className="mr-2" onClick={onReset}>Discard</Button>
 								<Button type="primary" onClick={() => onFinish()} htmlType="submit" loading={submitLoading} >
@@ -103,9 +123,9 @@ const JenisClashForm = props => {
 						style={{marginTop: 30}}
 						items={[
 							{
-								label: 'Project Field',
+								label: 'Status Validasi Field',
 								key: '1',
-								children: <JenisClashField />,
+								children: <StatusValidasiField />,
 							}
 						]}
 					/>
@@ -115,4 +135,4 @@ const JenisClashForm = props => {
 	)
 }
 
-export default JenisClashForm
+export default StatusValidasiForm

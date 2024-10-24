@@ -107,7 +107,7 @@ const KategoriClashForm = props => {
 				<PageHeaderAlt className="border-bottom" overlap>
 					<div className="container">
 						<Flex className="py-2" mobileFlex={false} justifyContent="space-between" alignItems="center">
-							<h2 className="mb-3">{mode === 'ADD'? 'Add New Jenis Clash' : `Edit Jenis Clash`} </h2>
+							<h2 className="mb-3">{mode === 'ADD'? 'Add New Kategori Clash' : `Edit Kategori Clash`} </h2>
 							<div className="mb-3">
 								<Button className="mr-2" onClick={onReset}>Discard</Button>
 								<Button type="primary" onClick={() => onFinish()} htmlType="submit" loading={submitLoading} >
@@ -123,7 +123,7 @@ const KategoriClashForm = props => {
 						style={{marginTop: 30}}
 						items={[
 							{
-								label: 'Project Field',
+								label: 'Kategori Field',
 								key: '1',
 								children: <KategoriClashField />,
 							}

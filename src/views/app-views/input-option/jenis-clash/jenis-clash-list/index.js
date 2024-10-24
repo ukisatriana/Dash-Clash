@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Card, Table, Input, Button, Menu } from 'antd';
-import projectData from "assets/data/project-data.json";
 import { EditOutlined, DeleteOutlined, SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import EllipsisDropdown from 'components/shared-components/EllipsisDropdown';
 import Flex from 'components/shared-components/Flex';
 import { useNavigate } from "react-router-dom";
+import FirestoreService from 'services/FirestoreService';
 import utils from 'utils'
 
 
@@ -24,9 +24,22 @@ import utils from 'utils'
 
 const JenisClashList = () => {
 	const navigate = useNavigate();
-	const [list, setList] = useState(projectData)
+	const [list, setList] = useState([]);
 	const [selectedRows, setSelectedRows] = useState([])
 	const [selectedRowKeys, setSelectedRowKeys] = useState([])
+
+	useEffect(() => {
+		const fetchData = async () => {
+		  try {
+			const data = await FirestoreService.getDocuments('jenisClash');
+			setList(data);
+		  } catch (error) {
+			console.error('Error fetching data:', error);
+		  }
+		};
+	
+		fetchData();
+	  }, []);
 
 	const dropdownMenu = row => (
 		<Menu>
@@ -45,7 +58,7 @@ const JenisClashList = () => {
 		</Menu>
 	);
 	
-	const addProject = () => {
+	const addJenisClash = () => {
 		navigate(`/app/input-option/jenis-clash/jenis-clash-add`)
 	}
 	
@@ -53,7 +66,6 @@ const JenisClashList = () => {
 		navigate(`/app/input-option/jenis-clash/jenis-clash-edit/${row.id}`)
 	}
 
-	
 	
 	const deleteRow = row => {
 		const objKey = 'id'
@@ -68,23 +80,28 @@ const JenisClashList = () => {
 			data = utils.deleteArrayRow(data, objKey, row.id)
 			setList(data)
 		}
-	}
+	};
 
 	const tableColumns = [
+		// {
+		// 	title: 'ID',
+		// 	dataIndex: 'id'
+		// },
 		{
-			title: 'ID',
-			dataIndex: 'id'
+			title: 'No',
+			dataIndex: 'no',
+			render: (text, record, index) => index + 1
 		},
 		{
 			title: 'Jenis Clash',
-			dataIndex: 'jenisClash',
+			dataIndex: 'namaJenisClash',
 			
-			sorter: (a, b) => utils.antdTableSorter(a, b, 'projectName')
+			sorter: (a, b) => utils.antdTableSorter(a, b, 'namaJenisClash')
 		},
 		{
 			title: 'Ket Jenis Clash',
 			dataIndex: 'ketJenisClash',
-			sorter: (a, b) => utils.antdTableSorter(a, b, 'projectLocation')
+			sorter: (a, b) => utils.antdTableSorter(a, b, 'ketJenisClash')
 		},
 		{
 			title: '',
@@ -106,7 +123,7 @@ const JenisClashList = () => {
 
 	const onSearch = e => {
 		const value = e.currentTarget.value
-		const searchArray = e.currentTarget.value? list : projectData
+		const searchArray = value ? list : [];
 		const data = utils.wildCardSearch(searchArray, value)
 		setList(data)
 		setSelectedRowKeys([])
@@ -121,7 +138,7 @@ const JenisClashList = () => {
 					</div>
 				</Flex>
 				<div>
-					<Button onClick={addProject} type="primary" icon={<PlusCircleOutlined />} block>Add Jenis Clash</Button>
+					<Button onClick={addJenisClash} type="primary" icon={<PlusCircleOutlined />} block>Add Jenis Clash</Button>
 				</div>
 			</Flex>
 			<div className="table-responsive">

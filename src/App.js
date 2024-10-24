@@ -10,15 +10,12 @@ import './lang'
 // import mockServer from './mock'
 import FirebaseConfig from 'configs/FirebaseConfig';
 
-console.log('confFirebase', FirebaseConfig)
-
 const themes = {
   dark: `${process.env.PUBLIC_URL}/css/dark-theme.css`,
   light: `${process.env.PUBLIC_URL}/css/light-theme.css`,
 };
 
 const environment = process.env.NODE_ENV
-// console.log('env', environment)
 
 // if (environment !== 'production') {
 // 	mockServer({ environment })

@@ -22,7 +22,7 @@ import utils from 'utils'
 // 	return null
 // }
 
-const KategoriClashList = () => {
+const StatusValidasiList = () => {
 	const navigate = useNavigate();
 	const [list, setList] = useState(projectData)
 	const [selectedRows, setSelectedRows] = useState([])
@@ -45,12 +45,12 @@ const KategoriClashList = () => {
 		</Menu>
 	);
 	
-	const addKategoriClash = () => {
-		navigate(`/app/input-option/kategori-clash/kategori-clash-add`)
+	const addStatusValidasi = () => {
+		navigate(`/app/input-option/status-validasi/status-validasi-add`)
 	}
 	
 	const viewDetails = row => {
-		navigate(`/app/input-option/kategori-clash/kategori-clash-edit/${row.id}`)
+		navigate(`/app/input-option/status-validasi/status-validasi-edit/${row.id}`)
 	}
 
 	
@@ -76,13 +76,13 @@ const KategoriClashList = () => {
 			dataIndex: 'id'
 		},
 		{
-			title: 'Nama Kategori Clash',
-			dataIndex: 'namaKatClash',
+			title: 'Nama Valdasi Clash',
+			dataIndex: 'kategoriClash',
 			
-			sorter: (a, b) => utils.antdTableSorter(a, b, 'namaKatClash')
+			sorter: (a, b) => utils.antdTableSorter(a, b, 'kategoriClash')
 		},
 		{
-			title: 'Ket Kategori Clash',
+			title: 'Ket Validasi Clash',
 			dataIndex: 'ketKategoriClash',
 			sorter: (a, b) => utils.antdTableSorter(a, b, 'ketKategoriClash')
 		},
@@ -121,7 +121,7 @@ const KategoriClashList = () => {
 					</div>
 				</Flex>
 				<div>
-					<Button onClick={addKategoriClash} type="primary" icon={<PlusCircleOutlined />} block>Add Kategori Clash</Button>
+					<Button onClick={addStatusValidasi} type="primary" icon={<PlusCircleOutlined />} block>Add Validasi Clash</Button>
 				</div>
 			</Flex>
 			<div className="table-responsive">
@@ -141,4 +141,4 @@ const KategoriClashList = () => {
 	)
 }
 
-export default KategoriClashList
+export default StatusValidasiList
