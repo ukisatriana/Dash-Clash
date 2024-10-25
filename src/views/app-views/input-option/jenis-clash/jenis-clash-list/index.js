@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { Card, Table, Input, Button, Menu } from 'antd';
+import { Card, Table, Input, Button, Menu, message } from 'antd';
 import { EditOutlined, DeleteOutlined, SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import EllipsisDropdown from 'components/shared-components/EllipsisDropdown';
 import Flex from 'components/shared-components/Flex';
@@ -7,26 +7,11 @@ import { useNavigate } from "react-router-dom";
 import FirestoreService from 'services/FirestoreService';
 import utils from 'utils'
 
-
-
-// const getStockStatus = stockCount => {
-// 	if(stockCount >= 10) {
-// 		return <><Badge status="success" /><span>In Stock</span></>
-// 	}
-// 	if(stockCount < 10 && stockCount > 0) {
-// 		return <><Badge status="warning" /><span>Limited Stock</span></>
-// 	}
-// 	if(stockCount === 0) {
-// 		return <><Badge status="error" /><span>Out of Stock</span></>
-// 	}
-// 	return null
-// }
-
 const JenisClashList = () => {
 	const navigate = useNavigate();
 	const [list, setList] = useState([]);
 	const [selectedRows, setSelectedRows] = useState([])
-	const [selectedRowKeys, setSelectedRowKeys] = useState([])
+	// const [selectedRowKeys, setSelectedRowKeys] = useState([])
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -67,20 +52,15 @@ const JenisClashList = () => {
 	}
 
 	
-	const deleteRow = row => {
-		const objKey = 'id'
-		let data = list
-		if(selectedRows.length > 1) {
-			selectedRows.forEach(elm => {
-				data = utils.deleteArrayRow(data, objKey, elm.id)
-				setList(data)
-				setSelectedRows([])
-			})
-		} else {
-			data = utils.deleteArrayRow(data, objKey, row.id)
-			setList(data)
+	const deleteRow = async row => {
+		try {
+		  await FirestoreService.deleteDocument('jenisClash', row.id);
+		  message.success('Jenis Clash deleted successfully');
+		  setList(list.filter(item => item.id !== row.id));
+		} catch (error) {
+		  message.error('Error deleting Jenis Clash: ' + error.message);
 		}
-	};
+	  };
 
 	const tableColumns = [
 		// {
@@ -117,7 +97,7 @@ const JenisClashList = () => {
 	const rowSelection = {
 		onChange: (key, rows) => {
 			setSelectedRows(rows)
-			setSelectedRowKeys(key)
+			// setSelectedRowKeys(key)
 		}
 	};
 
@@ -126,7 +106,7 @@ const JenisClashList = () => {
 		const searchArray = value ? list : [];
 		const data = utils.wildCardSearch(searchArray, value)
 		setList(data)
-		setSelectedRowKeys([])
+		// setSelectedRowKeys([])
 	}
 
 	return (
@@ -146,12 +126,12 @@ const JenisClashList = () => {
 					columns={tableColumns} 
 					dataSource={list} 
 					rowKey='id' 
-					rowSelection={{
-						selectedRowKeys: selectedRowKeys,
-						type: 'checkbox',
-						preserveSelectedRowKeys: false,
-						...rowSelection,
-					}}
+					// rowSelection={{
+					// 	selectedRowKeys: selectedRowKeys,
+					// 	type: 'checkbox',
+					// 	preserveSelectedRowKeys: false,
+					// 	...rowSelection,
+					// }}
 				/>
 			</div>
 		</Card>

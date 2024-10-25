@@ -1,6 +1,6 @@
 import React from 'react';
 import { LockOutlined, MailOutlined } from '@ant-design/icons';
-import { Button, Form, Input, Alert } from "antd";
+import { Button, Form, Input } from "antd";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { signIn, showAuthMessage, showLoading, hideAuthMessage } from 'store/slices/authSlice';

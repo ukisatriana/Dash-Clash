@@ -1,5 +1,5 @@
 import { db } from 'configs/FirebaseConfig';
-import { collection, addDoc, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 
 const FirestoreService = {};
 
@@ -31,5 +31,14 @@ FirestoreService.updateDocument = async (collectionName, docId, data) => {
   }
 };
 
+
+FirestoreService.deleteDocument = async (collectionName, docId) => {
+  try {
+    const docRef = doc(db, collectionName, docId);
+    await deleteDoc(docRef);
+  } catch (error) {
+    throw new Error('Error deleting document: ' + error.message);
+  }
+};
 
 export default FirestoreService;
